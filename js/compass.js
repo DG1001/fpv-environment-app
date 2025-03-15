@@ -59,29 +59,6 @@ class CompassManager {
                     
                     document.body.appendChild(permissionBtn);
                     
-                    // Hinweistext hinzufügen
-                    const infoText = document.createElement('div');
-                    infoText.innerHTML = 'Für die Kompass-Funktionalität wird Ihre Erlaubnis benötigt.';
-                    infoText.style.position = 'fixed';
-                    infoText.style.top = 'calc(50% - 50px)';
-                    infoText.style.left = '50%';
-                    infoText.style.transform = 'translateX(-50%)';
-                    infoText.style.width = '80%';
-                    infoText.style.textAlign = 'center';
-                    infoText.style.color = '#333';
-                    infoText.style.zIndex = '10000';
-                    document.body.appendChild(infoText);
-                    
-                    // Nach 10 Sekunden automatisch entfernen, falls keine Interaktion
-                    setTimeout(() => {
-                        if (document.body.contains(permissionBtn)) {
-                            document.body.removeChild(permissionBtn);
-                            if (document.body.contains(infoText)) {
-                                document.body.removeChild(infoText);
-                            }
-                            resolve(false);
-                        }
-                    }, 10000);
                 });
             } catch (error) {
                 console.error('Fehler beim Erstellen des Berechtigungs-Dialogs:', error);
