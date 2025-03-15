@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4285f4">
+    <title>First-Person-View Umgebungs-App</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.osmbuildings.org/4.1.1/OSMBuildings.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Externe Bibliotheken -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/FirstPersonControls.js"></script>
+    <script src="https://cdn.osmbuildings.org/4.1.1/OSMBuildings.js"></script>
+    
+    <!-- JavaScript Module -->
+    <script src="js/gps.js"></script>
+    <script src="js/compass.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/deploy.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="map-container"></div>
+        <div id="info-panel">
+            <div id="coordinates">
+                <span>Latitude: </span><span id="lat">--</span>
+                <span>Longitude: </span><span id="lon">--</span>
+            </div>
+            <div id="orientation">
+                <span>Richtung: </span><span id="heading">--</span>°
+            </div>
+            <button id="update-btn">Position aktualisieren</button>
+        </div>
+    </div>
+    
+    <!-- Service Worker Registrierung -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker erfolgreich registriert:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker Registrierung fehlgeschlagen:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

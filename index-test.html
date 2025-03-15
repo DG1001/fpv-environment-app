@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>First-Person-View Umgebungs-App (Test)</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.osmbuildings.org/4.1.1/OSMBuildings.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Externe Bibliotheken -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/FirstPersonControls.js"></script>
+    <script src="https://cdn.osmbuildings.org/4.1.1/OSMBuildings.js"></script>
+    
+    <!-- JavaScript Module -->
+    <script src="js/gps.js"></script>
+    <script src="js/compass.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/test.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="map-container"></div>
+        <div id="info-panel">
+            <div id="coordinates">
+                <span>Latitude: </span><span id="lat">--</span>
+                <span>Longitude: </span><span id="lon">--</span>
+            </div>
+            <div id="orientation">
+                <span>Richtung: </span><span id="heading">--</span>°
+            </div>
+            <button id="update-btn">Position aktualisieren</button>
+        </div>
+    </div>
+</body>
+</html>

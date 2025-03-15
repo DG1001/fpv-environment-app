@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline-Seite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4285f4;
+        }
+        p {
+            line-height: 1.6;
+            color: #333;
+        }
+        button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #3367d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sie sind offline</h1>
+        <p>Es scheint, dass Sie keine Internetverbindung haben. Die First-Person-View Umgebungs-App benötigt eine Internetverbindung, um Karten- und Gebäudedaten abzurufen.</p>
+        <p>Bitte stellen Sie Ihre Verbindung wieder her und versuchen Sie es erneut.</p>
+        <button onclick="window.location.reload()">Erneut versuchen</button>
+    </div>
+</body>
+</html>
