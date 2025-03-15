@@ -26,11 +26,65 @@ class CompassManager {
         // Prüfen, ob requestPermission verfügbar ist (iOS 13+)
         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
             try {
-                const permission = await DeviceOrientationEvent.requestPermission();
-                this.permissionGranted = (permission === 'granted');
-                return this.permissionGranted;
+                // Auf iOS muss die Berechtigung durch eine Benutzeraktion ausgelöst werden
+                // Wir erstellen einen temporären Button, der die Berechtigung anfordert
+                return new Promise((resolve) => {
+                    const permissionBtn = document.createElement('button');
+                    permissionBtn.innerHTML = 'Kompass-Zugriff erlauben';
+                    permissionBtn.style.position = 'fixed';
+                    permissionBtn.style.top = '50%';
+                    permissionBtn.style.left = '50%';
+                    permissionBtn.style.transform = 'translate(-50%, -50%)';
+                    permissionBtn.style.padding = '15px 20px';
+                    permissionBtn.style.backgroundColor = '#4285f4';
+                    permissionBtn.style.color = 'white';
+                    permissionBtn.style.border = 'none';
+                    permissionBtn.style.borderRadius = '5px';
+                    permissionBtn.style.fontSize = '16px';
+                    permissionBtn.style.zIndex = '10000';
+                    
+                    permissionBtn.onclick = async () => {
+                        try {
+                            const permission = await DeviceOrientationEvent.requestPermission();
+                            this.permissionGranted = (permission === 'granted');
+                            console.log(`iOS Kompass-Berechtigung: ${permission}`);
+                            document.body.removeChild(permissionBtn);
+                            resolve(this.permissionGranted);
+                        } catch (error) {
+                            console.error('Fehler beim Anfordern der DeviceOrientation-Berechtigung:', error);
+                            document.body.removeChild(permissionBtn);
+                            resolve(false);
+                        }
+                    };
+                    
+                    document.body.appendChild(permissionBtn);
+                    
+                    // Hinweistext hinzufügen
+                    const infoText = document.createElement('div');
+                    infoText.innerHTML = 'Für die Kompass-Funktionalität wird Ihre Erlaubnis benötigt.';
+                    infoText.style.position = 'fixed';
+                    infoText.style.top = 'calc(50% - 50px)';
+                    infoText.style.left = '50%';
+                    infoText.style.transform = 'translateX(-50%)';
+                    infoText.style.width = '80%';
+                    infoText.style.textAlign = 'center';
+                    infoText.style.color = '#333';
+                    infoText.style.zIndex = '10000';
+                    document.body.appendChild(infoText);
+                    
+                    // Nach 10 Sekunden automatisch entfernen, falls keine Interaktion
+                    setTimeout(() => {
+                        if (document.body.contains(permissionBtn)) {
+                            document.body.removeChild(permissionBtn);
+                            if (document.body.contains(infoText)) {
+                                document.body.removeChild(infoText);
+                            }
+                            resolve(false);
+                        }
+                    }, 10000);
+                });
             } catch (error) {
-                console.error('Fehler beim Anfordern der DeviceOrientation-Berechtigung:', error);
+                console.error('Fehler beim Erstellen des Berechtigungs-Dialogs:', error);
                 return false;
             }
         } else {
