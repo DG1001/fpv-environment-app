@@ -165,7 +165,7 @@ class CompassManager {
         }
 
         // Kompassrichtung mit Kalibrierungsoffset anpassen
-        let heading = event.alpha + this.calibrationOffset;
+        let heading = 360 - (event.alpha + this.calibrationOffset);
         
         // Sicherstellen, dass der Wert im Bereich 0-360 liegt
         heading = (heading + 360) % 360;
