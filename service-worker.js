@@ -1,5 +1,4 @@
-// Service Worker für die First-Person-View Umgebungs-App
-const CACHE_NAME = 'fpv-environment-app-v1';
+const CACHE_NAME = 'fpv-environment-app-v2'; // Aktualisierte Versionsnummer
 const RESOURCES_TO_CACHE = [
   '/',
   '/index.html',
