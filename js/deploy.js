@@ -13,9 +13,28 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(deploymentStatusDiv);
 
     // Deployment-Status aktualisieren
-    function updateDeploymentStatus(message) {
+    function updateDeploymentStatus(message, autoHide = true) {
         deploymentStatusDiv.textContent = message;
         console.log(`[DEPLOYMENT] ${message}`);
+        
+        // Automatisch ausblenden nach 5 Sekunden, wenn autoHide true ist
+        if (autoHide) {
+            setTimeout(() => {
+                deploymentStatusDiv.style.opacity = '1';
+                
+                // Ausblenden mit Animation
+                const fadeOut = () => {
+                    if (parseFloat(deploymentStatusDiv.style.opacity) > 0) {
+                        deploymentStatusDiv.style.opacity = (parseFloat(deploymentStatusDiv.style.opacity) - 0.1).toString();
+                        setTimeout(fadeOut, 50);
+                    } else {
+                        deploymentStatusDiv.style.display = 'none';
+                    }
+                };
+                
+                setTimeout(fadeOut, 5000);
+            }, 2000);
+        }
     }
 
     // Service Worker registrieren für PWA-Funktionalität
@@ -113,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Deployment durchführen
     async function deploy() {
-        updateDeploymentStatus('Deployment wird gestartet...');
+        updateDeploymentStatus('Deployment wird gestartet...', false);
         
         // Service Worker registrieren
         const serviceWorkerRegistered = await registerServiceWorker();
@@ -126,9 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Deployment-Status aktualisieren
         if (serviceWorkerRegistered && appCacheInitialized && installationPrepared) {
-            updateDeploymentStatus('Deployment erfolgreich abgeschlossen');
+            updateDeploymentStatus('Deployment erfolgreich abgeschlossen', true);
         } else {
-            updateDeploymentStatus('Deployment mit Warnungen abgeschlossen');
+            updateDeploymentStatus('Deployment mit Warnungen abgeschlossen', true);
         }
     }
 
