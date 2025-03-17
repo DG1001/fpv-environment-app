@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } catch (error) {
-            updateStatus(`Fehler: ${error.message}`);
+            //updateStatus(`Fehler: ${error.message}`);
             console.error('Fehler beim Abrufen der Position:', error);
         } finally {
             updateButton.disabled = false;
