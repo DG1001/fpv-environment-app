@@ -2,7 +2,7 @@
 
 A progressive web application that displays your surroundings in a first-person 3D view using GPS location data and OpenStreetMap building information.
 
-![First-Person-View Environment App](https://github.com/DG1001/fpv-environment-app/raw/main/screenshots/app-preview.png)
+![First-Person-View Environment App](https://github.com/DG1001/fpv-environment-app/raw/main/screenshots/app-preview.jpg)
 
 ## Features
 
