@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fpv-environment-app-v3'; // Aktualisierte Versionsnummer
+const CACHE_NAME = 'fpv-environment-app-v4'; // Aktualisierte Versionsnummer
 const RESOURCES_TO_CACHE = [
   '/',
   '/index.html',
