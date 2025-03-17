@@ -1,7 +1,7 @@
 {
-  "name": "First-Person-View Umgebungs-App",
+  "name": "MeiLuft First-Person-View Umgebungs-App",
   "short_name": "FPV-App",
-  "description": "Eine App zur Darstellung der Umgebung in First-Person-View basierend auf GPS-Daten und OpenStreetMap",
+  "description": "Eine App von MeiLuft zur Darstellung der Umgebung in First-Person-View basierend auf GPS-Daten und OpenStreetMap",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
